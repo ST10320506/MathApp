@@ -45,7 +45,7 @@ class MainActivity : AppCompatActivity() {
 
 
                 }  catch (e: NumberFormatException) {
-                    Toast.makeText(this, "INVALID INPUT", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "INVALID INPUT, enter a number", Toast.LENGTH_SHORT).show()
                     //AI assisted in completing the code
                     //Prompt used in Gemini: complete the code so when the add button is clicked it adds the two numbers and displays the answer
                     answer.setText("")
