@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         val numberTwo = findViewById<EditText>(R.id.editTextText2)
         val addButton = findViewById<Button>(R.id.button)
         val answer = findViewById<EditText>(R.id.editTextText3)
+        val additionButton = findViewById<Button>(R.id.rdBtnAddition)
+        val subtractionButton = findViewById<Button>(R.id.rdBtnSubtraction)
 
         addButton.setOnClickListener {
             val numberOneString = numberOne.text.toString()
@@ -34,21 +36,33 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this, "Please enter two numbers", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
 
-            } else {
+            }
                 try {
                     val firstNumber = numberOneString.toInt()
                     val secondNumber = numberTwoString.toInt()
-                    val sum = firstNumber + secondNumber
-                    //AI assisted in completing the code
-                    //Prompt used in Gemini: complete the code so when the add button is clicked it adds the two numbers and displays the answer
-                    answer.setText(sum.toString())
 
+                    var answer: Int = 0
+                    var operation = " "
+
+                     if (additionButton.isChecked) {
+                         answer = firstNumber + secondNumber
+                         operation = "Addition"
+                     } else if (subtractionButton.isChecked) {
+                         answer = firstNumber - secondNumber
+                         operation = "Subtraction"
+                     } else {
+                         Toast.makeText(this, "Please select an operation", Toast.LENGTH_SHORT).show()
+                         answerTextView.text = " "
+                         return@setOnClickListener
+                     }
+
+                    answerTextView.text = "$operation Result: $answer"
 
                 }  catch (e: NumberFormatException) {
                     Toast.makeText(this, "INVALID INPUT, enter a number", Toast.LENGTH_SHORT).show()
                     //AI assisted in completing the code
                     //Prompt used in Gemini: complete the code so when the add button is clicked it adds the two numbers and displays the answer
-                    answer.setText("")
+                    answerTextView.text("")
 
                    }
             }
